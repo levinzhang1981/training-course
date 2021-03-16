@@ -24,8 +24,8 @@ export class AccountService {
         return this.userSubject.value;
     }
 
-    getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    getAll(filter = "") {
+        return this.http.get<User[]>(`${environment.apiUrl}/users?filter=${filter}`);
     }
 
     getById(id: string) {

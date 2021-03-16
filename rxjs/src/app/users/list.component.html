@@ -1,5 +1,7 @@
 <h1>Users</h1>
 <a class="btn btn-sm btn-success mb-2" (click)="generateUser()">Generate User</a>
+<!--Raw Filter-->
+<input class="form-control" [(ngModel)]="filterValue" (ngModelChange)="filterChange($event)"/>
 <table class="table table-striped">
     <thead>
     <tr>

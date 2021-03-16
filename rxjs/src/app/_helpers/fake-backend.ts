@@ -22,12 +22,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return of(null)
             .pipe(mergeMap(handleRoute))
             .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
-            .pipe(delay(500))
+            .pipe(delay(600))
             .pipe(dematerialize());
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/users') && method === 'GET':
+                case url.match(/\/users[?]?.*$/) && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'GET':
                     return getUserById();
@@ -40,6 +40,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
+            const parsedUrl = new URL(url);
+            const filterValue = parsedUrl.searchParams.get("filter");
+            if (filterValue) {
+                console.log(`Backend process request with filter value = [${filterValue}]`);
+                return ok(users.filter(x => `${x.id}`.indexOf(filterValue) > -1));
+            }
             return ok(users);
         }
 
