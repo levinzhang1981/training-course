@@ -1,13 +1,19 @@
-<h1>Users</h1>
+<h1>Users (Total: {{total}})</h1>
 <a class="btn btn-sm btn-success mb-2" (click)="generateUser()">Generate User</a>
 <!--Raw Filter-->
-<input class="form-control" [(ngModel)]="filterValue" (ngModelChange)="filterChange($event)"/>
+<input class="form-control col-md-5" [(ngModel)]="nameFilterValue" (ngModelChange)="onNameFilterChange($event)"
+       placeholder="Filter by Username..."/>
+<input type="number" class="form-control col-md-5" [(ngModel)]="ageFilterValue"
+       (ngModelChange)="onAgeFilterChange($event)"
+       placeholder="Filter by Max Age..."/>
+
 <table class="table table-striped">
     <thead>
     <tr>
         <th style="width: 30%">First Name</th>
         <th style="width: 30%">Last Name</th>
         <th style="width: 30%">Username</th>
+        <th style="width: 30%">Age</th>
         <th style="width: 10%"></th>
     </tr>
     </thead>
@@ -16,6 +22,7 @@
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.username}}</td>
+        <td>{{user.age}}</td>
         <td style="white-space: nowrap">
             <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
             <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user"

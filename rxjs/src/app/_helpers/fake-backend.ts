@@ -41,12 +41,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function getUsers() {
             const parsedUrl = new URL(url);
-            const filterValue = parsedUrl.searchParams.get("filter");
-            if (filterValue) {
-                console.log(`Backend process request with filter value = [${filterValue}]`);
-                return ok(users.filter(x => `${x.id}`.indexOf(filterValue) > -1));
-            }
-            return ok(users);
+            const nameFilter = parsedUrl.searchParams.get("nameFilter");
+            const ageFilter = parsedUrl.searchParams.get("ageFilter");
+            console.log(`Backend process request with filter value = [${nameFilter}]`);
+            // return ok(users.filter(x => `${x.name}`.indexOf(filterValue) > -1));
+            return ok(users.filter(x => {
+                if (ageFilter && x.age > ageFilter) {
+                    return false;
+                }
+
+                if (nameFilter && `${x.username}`.toLowerCase().indexOf(nameFilter) === -1) {
+                    return false;
+                }
+                return true
+            }));
         }
 
         function getUserById() {
@@ -60,7 +68,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             users.push({
                 firstName: 'Foo',
                 lastName: 'Bar',
-                username: `user#${id}`,
+                username: `user${id}`,
+                age: Math.round(Math.random() * 60),
                 id: id
             })
             localStorage.setItem('users', JSON.stringify(users));
