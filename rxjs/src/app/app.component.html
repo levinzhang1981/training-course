@@ -1,8 +1,20 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
-           [routerLinkActiveOptions]="{exact: true}">Users</a>
+        <a class="nav-item nav-link" routerLink="/1" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 1 Raw Filter</a>
+        <a class="nav-item nav-link" routerLink="/2" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 2 Debounce</a>
+        <a class="nav-item nav-link" routerLink="/3" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 3 Lowercase</a>
+        <a class="nav-item nav-link" routerLink="/4" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 4 From Event</a>
+        <a class="nav-item nav-link" routerLink="/5" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 5 Multiple Subscriber</a>
+        <a class="nav-item nav-link" routerLink="/6" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 6 Tap Utility</a>
+        <a class="nav-item nav-link" routerLink="/7" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">Sample 7 Combine Latest</a>
     </div>
 </nav>
 

@@ -3,10 +3,10 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from "./app.component";
 
-const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
+const sampleModule = () => import('./sample/sample.module').then(x => x.SampleModule);
 
 const routes: Routes = [
-    {path: "", component: AppComponent, loadChildren: usersModule},
+    {path: "", loadChildren: sampleModule},
 ];
 
 @NgModule({
