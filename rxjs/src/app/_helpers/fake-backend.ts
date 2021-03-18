@@ -29,8 +29,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.match(/\/users[?]?.*$/) && method === 'GET':
                     return getUsers();
-                case url.match(/\/users\/\d+$/) && method === 'GET':
+                case url.match(/\/users\/.+$/) && method === 'GET':
                     return getUserById();
+                case url.match(/\/users\/.+$/) && method === 'DELETE':
+                    return deleteUserById();
                 case url.endsWith('/users') && method === 'POST':
                     return createUser();
                 default:
@@ -62,16 +64,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(user);
         }
 
-        function createUser() {
-            const id = Math.round(Math.random() * 1000);
+        function deleteUserById() {
+            const userIdx = users.findIndex(x => x.id === idFromUrl());
+            users = users.splice(userIdx, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+            return ok(users);
+        }
 
-            users.push({
-                firstName: 'Foo',
-                lastName: 'Bar',
-                username: `user${id}`,
-                age: Math.round(Math.random() * 60),
-                id: id
-            })
+        function createUser() {
+            if (body) {
+                users.push(body);
+            } else {
+                const id = Math.round(Math.random() * 1000);
+                users.push({
+                    firstName: 'Foo',
+                    lastName: 'Bar',
+                    username: `user${id}`,
+                    age: Math.round(Math.random() * 60),
+                    id: id
+                })
+            }
+
             localStorage.setItem('users', JSON.stringify(users));
             return ok(users);
         }

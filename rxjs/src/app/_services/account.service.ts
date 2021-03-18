@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 
 import {environment} from '../../environment';
 import {User} from '../_models';
@@ -33,16 +33,25 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
-            .pipe(map(x => {
-                // auto logout if the logged in user deleted their own record
-                if (id == this.userValue.id) {
-                }
-                return x;
-            }));
+        return this.http.delete(`${environment.apiUrl}/users/${id}`);
     }
 
     generateUser() {
-        return this.http.post<User[]>(`${environment.apiUrl}/users`, {});
+        return this.http.get('https://randomuser.me/api/')
+            .pipe(
+                map(response => response['results'][0]),
+                map<any, User>(netUser => ({
+                    id: netUser['login']['uuid'],
+                    username: netUser['login']['username'],
+                    password: netUser['login']['password'],
+                    firstName: netUser['name']['first'],
+                    lastName: netUser['name']['last'],
+                    email: netUser['email'],
+                    age: netUser['dob']['age'],
+                })),
+                switchMap((user) => this.http.post<User[]>(`${environment.apiUrl}/users`, user))
+            );
+
+        // return this.http.post<User[]>(`${environment.apiUrl}/users`, {});
     }
 }

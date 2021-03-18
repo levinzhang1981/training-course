@@ -33,8 +33,8 @@ export class ListComponent implements OnInit {
         user.isDeleting = true;
         this.accountService.delete(id)
             .pipe(first())
-            .subscribe(() => {
-                this.users = this.users.filter(x => x.id !== id)
+            .subscribe((users) => {
+                this.users = users;
             });
     }
 
