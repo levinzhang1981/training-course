@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 
 import {AccountService} from '../../_services';
@@ -15,8 +15,8 @@ export class ListComponent implements OnInit {
     nameFilterChangeSubject = new Subject<string>();
     ageFilterChangeSubject = new Subject<number>();
 
-    constructor(private accountService: AccountService,
-                private elementRef: ElementRef) {
+    constructor(private accountService: AccountService) {
+        // TODO: add your logic here to do some interesting things
         this.nameFilterChangeSubject
             .subscribe((value) => {
                 console.log(`Raw event output: ${value}`)
@@ -30,7 +30,6 @@ export class ListComponent implements OnInit {
     ngOnInit() {
         this.nameFilterChangeSubject.next();
     }
-
 
     deleteUser(id: string) {
         const user = this.users.find(x => x.id === id);
