@@ -10,8 +10,7 @@ const usersModule = () => import('./users/users.module').then(x => x.UsersModule
 const templateSyntaxModule = () => import('./template-syntax/template-syntax.module').then(x => x.TemplateSyntaxModule);
 
 const routes: Routes = [
-    {path: '', component: AppComponent},
-    {path: 'home', component: HomeComponent},
+    {path: '', component: HomeComponent},
     {path: 'users', loadChildren: usersModule},
     {path: 'account', loadChildren: accountModule},
     {path: 'template-syntax', loadChildren: templateSyntaxModule},
