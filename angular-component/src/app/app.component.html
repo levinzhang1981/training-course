@@ -14,6 +14,6 @@
 
 <!-- main app container -->
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
-    <alert></alert>
+    <alert (click)="onAlertClicked($event)"></alert>
     <router-outlet></router-outlet>
 </div>

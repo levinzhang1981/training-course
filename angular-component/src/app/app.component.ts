@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { AccountService } from './_services';
-import { User } from './_models';
+import {AccountService} from './_services';
+import {User} from './_models';
 
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
+@Component({selector: 'app', templateUrl: 'app.component.html'})
 export class AppComponent {
     user: User;
 
@@ -13,5 +13,9 @@ export class AppComponent {
 
     logout() {
         this.accountService.logout();
+    }
+
+    onAlertClicked($event: any) {
+        console.log("Alert has been clicked.", $event);
     }
 }
