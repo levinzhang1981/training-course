@@ -22,7 +22,7 @@ div.code-block {
 }
 
 /* Style for override in global*/
-p {
+div.view-encapsulation-demo p {
     color: grey;
     border: grey 2px solid;
     font-size: 24px;

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-view-encapsulation-demo',
@@ -13,6 +13,20 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
             <button routerLink="/view-encapsulation/none" routerLinkActive="btn-primary" class="btn">
                 None Encapsulation
             </button>
+        </div>
+        <div class="col-md-6 offset-md-3 mt-5 ">
+        <p>Global Style:</p>
+            <div class="code-block">
+                <![CDATA[
+                div.view-encapsulation-demo p {
+                color: grey;
+                border: grey 2px solid;
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 24px;
+                }
+                ]]>
+            </div>
         </div>
         <div class="col-md-6 offset-md-3 mt-5 view-encapsulation-demo">
             <p>Demo Start Here:</p>
