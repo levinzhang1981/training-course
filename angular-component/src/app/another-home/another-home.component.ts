@@ -13,5 +13,4 @@ export class AnotherHomeComponent {
     constructor(private accountService: AccountService) {
         this.user = this.accountService.userValue;
     }
-
 }
