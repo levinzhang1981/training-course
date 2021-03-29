@@ -11,7 +11,9 @@
         "@angular/platform-browser": "^9.1.0",
         "@angular/platform-browser-dynamic": "^9.1.0",
         "@angular/router": "^9.1.0",
+        "@ngx-tiny/code-highlight": "^10.0.1",
         "core-js": "^3.6.4",
+        "prismjs": "^1.23.0",
         "rxjs": "^6.5.4",
         "tslib": "^1.10.0",
         "zone.js": "^0.10.3"

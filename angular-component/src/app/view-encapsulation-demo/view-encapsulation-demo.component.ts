@@ -16,12 +16,11 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
         </div>
         <div class="col-md-6 offset-md-3 mt-5 view-encapsulation-demo">
             <p>Demo Start Here:</p>
-
             <router-outlet></router-outlet>
         </div>
     `,
     styles: [`
-        .view-encapsulation-demo {
+        .view-encapsulation-demo p {
             color: red;
             border: red 2px solid;
         }

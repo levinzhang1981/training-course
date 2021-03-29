@@ -13,13 +13,15 @@ import {AlertComponent, LogConsoleComponent} from './_components';
 import {HomeComponent} from './home';
 import {AnotherHomeComponent} from "./another-home";
 import {ViewEncapsulationDemoComponent} from './view-encapsulation-demo/view-encapsulation-demo.component';
+import {NgxCodeHighlightModule} from "@ngx-tiny/code-highlight";
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NgxCodeHighlightModule
     ],
     declarations: [
         AppComponent,
