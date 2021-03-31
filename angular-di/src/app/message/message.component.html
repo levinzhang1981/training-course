@@ -1,0 +1,10 @@
+<div class="row card">
+    <h5 class="card-header">Message Output</h5>
+    <div class="card-body">
+        <div class="col-12">
+            <div class="alert alert-info" role="alert" *ngFor="let message of messageStore.messages">
+                {{message}}
+            </div>
+        </div>
+    </div>
+</div>

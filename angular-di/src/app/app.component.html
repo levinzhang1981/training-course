@@ -1,0 +1,24 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        <a class="nav-item nav-link" routerLink="/another-home" routerLinkActive="active">Another Home</a>
+        <a class="nav-item nav-link" routerLink="/isolated-home" routerLinkActive="active">Isolated Home</a>
+
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="container">
+    <div class="row gy-5">
+        <div class="col-6">
+            <!-- Child Page Component Load Here-->
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-6">
+            <!--Message Output Here-->
+            <app-message></app-message>
+        </div>
+    </div>
+</div>
+
