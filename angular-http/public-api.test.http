@@ -1,0 +1,13 @@
+GET https://covid-api.mmediagroup.fr/v1/cases?country=Usa
+Accept: application/json
+
+###
+
+
+
+
+
+
+
+
+

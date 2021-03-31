@@ -1,0 +1,39 @@
+<h1>COVID-19 Cases Query</h1>
+<div style="margin-bottom: 6px">
+    <input class="form-control form-control-lg"
+           type="text"
+           placeholder="Input Country to Query..."
+           aria-label=".form-control-lg example"
+           [ngModel]="countryFilter"
+           (ngModelChange)="onFilterChanged($event)"
+    >
+</div>
+<div *ngIf="loading" class="d-flex align-items-center">
+    <strong>Loading...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+</div>
+<div *ngIf="!loading" style="height: calc(100vh - 120px); overflow-y: auto;">
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">State</th>
+            <th scope="col">Confirmed</th>
+            <th scope="col">Recovered</th>
+            <th scope="col">Deaths</th>
+            <th scope="col">Deaths Rate(%)</th>
+            <th scope="col">Updated</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of cases">
+            <th scope="row">{{item.state}}</th>
+            <td>{{item.confirmed}}</td>
+            <td>{{item.recovered}}</td>
+            <td>{{item.deaths}}</td>
+            <td>{{item.deathsRate | percent: '2.2'}}</td>
+            <td>{{item.updated}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
