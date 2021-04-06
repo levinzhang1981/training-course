@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kingland.neusoft.course.mapper.FamilyMapper">
+  <resultMap id="BaseResultMap" type="com.kingland.neusoft.course.model.FamilyModel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="relationshiptype" jdbcType="VARCHAR" property="relationshiptype" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, "name", age, relationshiptype, phone_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_access."family"
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_access."family"
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
+    insert into user_access."family" (user_id, "name", age,
+      relationshiptype, phone_num)
+    values (#{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{relationshiptype,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
+    insert into user_access."family"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        "name",
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="relationshiptype != null">
+        relationshiptype,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="relationshiptype != null">
+        #{relationshiptype,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kingland.neusoft.course.model.FamilyModel">
+    update user_access."family"
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        "name" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="relationshiptype != null">
+        relationshiptype = #{relationshiptype,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kingland.neusoft.course.model.FamilyModel">
+    update user_access."family"
+    set user_id = #{userId,jdbcType=BIGINT},
+      "name" = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      relationshiptype = #{relationshiptype,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
