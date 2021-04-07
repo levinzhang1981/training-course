@@ -4,13 +4,9 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                sh 'echo ------------ Previous Resources: --------------'
-                sh 'ls'
-                sh 'echo -----------------------------------------------'
-                checkout scm
-                sh 'echo ---------- Checkout SCM Resources: ------------'
-                sh 'ls'
-                sh 'echo -----------------------------------------------'
+                dir('devops') {
+                    'docker-compose --version'
+                }
             }
         }
 
