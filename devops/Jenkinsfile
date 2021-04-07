@@ -2,14 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout SCM') {
-            steps {
-                dir('devops') {
-                    'docker-compose --version'
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'echo Build stage ...'
