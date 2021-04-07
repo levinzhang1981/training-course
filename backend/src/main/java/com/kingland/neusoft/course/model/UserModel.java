@@ -18,6 +18,8 @@ public class UserModel implements Serializable {
 
     private Integer gender;
 
+    private Boolean isAdmin;
+
     private Date birthday;
 
     private String phoneNum;
@@ -64,6 +66,14 @@ public class UserModel implements Serializable {
 
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public Date getBirthday() {

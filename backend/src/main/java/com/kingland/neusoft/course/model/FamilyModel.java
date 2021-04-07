@@ -15,7 +15,7 @@ public class FamilyModel implements Serializable {
 
     private Integer age;
 
-    private String workplace;
+    private String relationshiptype;
 
     private String phoneNum;
 
@@ -53,12 +53,12 @@ public class FamilyModel implements Serializable {
         this.age = age;
     }
 
-    public String getWorkplace() {
-        return workplace;
+    public String getRelationshiptype() {
+        return relationshiptype;
     }
 
-    public void setWorkplace(String workplace) {
-        this.workplace = workplace;
+    public void setRelationshiptype(String relationshiptype) {
+        this.relationshiptype = relationshiptype;
     }
 
     public String getPhoneNum() {

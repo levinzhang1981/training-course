@@ -6,11 +6,11 @@
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="workplace" jdbcType="VARCHAR" property="workplace" />
+    <result column="relationshiptype" jdbcType="VARCHAR" property="relationshiptype" />
     <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, "name", age, workplace, phone_num
+    id, user_id, "name", age, relationshiptype, phone_num
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -24,9 +24,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
     insert into user_access."family" (user_id, "name", age,
-      workplace, phone_num)
+      relationshiptype, phone_num)
     values (#{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{workplace,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR})
+      #{relationshiptype,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
     insert into user_access."family"
@@ -40,8 +40,8 @@
       <if test="age != null">
         age,
       </if>
-      <if test="workplace != null">
-        workplace,
+      <if test="relationshiptype != null">
+        relationshiptype,
       </if>
       <if test="phoneNum != null">
         phone_num,
@@ -57,8 +57,8 @@
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="workplace != null">
-        #{workplace,jdbcType=VARCHAR},
+      <if test="relationshiptype != null">
+        #{relationshiptype,jdbcType=VARCHAR},
       </if>
       <if test="phoneNum != null">
         #{phoneNum,jdbcType=VARCHAR},
@@ -77,8 +77,8 @@
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="workplace != null">
-        workplace = #{workplace,jdbcType=VARCHAR},
+      <if test="relationshiptype != null">
+        relationshiptype = #{relationshiptype,jdbcType=VARCHAR},
       </if>
       <if test="phoneNum != null">
         phone_num = #{phoneNum,jdbcType=VARCHAR},
@@ -91,7 +91,7 @@
     set user_id = #{userId,jdbcType=BIGINT},
       "name" = #{name,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
-      workplace = #{workplace,jdbcType=VARCHAR},
+      relationshiptype = #{relationshiptype,jdbcType=VARCHAR},
       phone_num = #{phoneNum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

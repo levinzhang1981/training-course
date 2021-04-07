@@ -7,12 +7,13 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="is_admin" jdbcType="BOOLEAN" property="isAdmin" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
     <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, "password", "name", gender, birthday, phone_num, home_address
+    id, username, "password", "name", gender, is_admin, birthday, phone_num, home_address
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -26,11 +27,11 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.UserModel" useGeneratedKeys="true">
     insert into user_access."user" (username, "password", "name",
-      gender, birthday, phone_num, 
-      home_address)
+      gender, is_admin, birthday, 
+      phone_num, home_address)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=TIMESTAMP}, #{phoneNum,jdbcType=VARCHAR}, 
-      #{homeAddress,jdbcType=VARCHAR})
+      #{gender,jdbcType=INTEGER}, #{isAdmin,jdbcType=BOOLEAN}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{phoneNum,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.UserModel" useGeneratedKeys="true">
     insert into user_access."user"
@@ -46,6 +47,9 @@
       </if>
       <if test="gender != null">
         gender,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
       </if>
       <if test="birthday != null">
         birthday,
@@ -69,6 +73,9 @@
       </if>
       <if test="gender != null">
         #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=BOOLEAN},
       </if>
       <if test="birthday != null">
         #{birthday,jdbcType=TIMESTAMP},
@@ -96,6 +103,9 @@
       <if test="gender != null">
         gender = #{gender,jdbcType=INTEGER},
       </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=BOOLEAN},
+      </if>
       <if test="birthday != null">
         birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
@@ -114,6 +124,7 @@
       "password" = #{password,jdbcType=VARCHAR},
       "name" = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=BOOLEAN},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       phone_num = #{phoneNum,jdbcType=VARCHAR},
       home_address = #{homeAddress,jdbcType=VARCHAR}
