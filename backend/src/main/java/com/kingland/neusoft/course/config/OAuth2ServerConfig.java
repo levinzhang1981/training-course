@@ -2,6 +2,7 @@ package com.kingland.neusoft.course.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -12,7 +13,8 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 
 @Configuration
 @EnableAuthorizationServer
-public class OAuth2ServerServerConfig extends AuthorizationServerConfigurerAdapter {
+@Profile("oauth2")
+public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private static final String DEMO_RESOURCE_ID = "user";
     @Autowired
