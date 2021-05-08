@@ -3,8 +3,9 @@ package com.kingland.neusoft.course.model;
 import java.io.Serializable;
 
 /**
- * family
- * @author 
+ * The data model represent the necessary field of family
+ *
+ * @author KSC
  */
 public class FamilyModel implements Serializable {
     private Long id;

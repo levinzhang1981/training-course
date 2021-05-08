@@ -3,6 +3,11 @@ package com.kingland.neusoft.course;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Entry of application
+ *
+ * @author KSC
+ */
 @SpringBootApplication
 public class CourseApplication {
 

@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public UserModel getUserByPK(Long id) {
+    public UserModel getUserById(Long id) {
         return userMapper.selectByPrimaryKey(id);
     }
 

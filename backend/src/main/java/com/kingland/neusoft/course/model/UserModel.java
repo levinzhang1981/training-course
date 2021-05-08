@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * user
- * @author 
+ * The data model represent the necessary field of user
+ *
+ * @author KSC
  */
+//TODO: Refactor to use lombok for setter\getter
 public class UserModel implements Serializable {
     private Long id;
 
