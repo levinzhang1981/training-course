@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="backend-app@local" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="course.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingland.neusoft.course.CourseApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <envs>
+      <env name="SPRING_DATASOURCE_URL" value="jdbc:postgresql://localhost:5432/compose-postgres" />
+      <env name="SPRING_DATASOURCE_USERNAME" value="compose-postgres" />
+      <env name="SPRING_DATASOURCE_PASSWORD" value="compose-postgres" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
