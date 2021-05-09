@@ -1,0 +1,5 @@
+FROM busybox
+# 方案一: 统一Copy
+# COPY ["copy_packages/app1.txt", "copy_packages/app2.txt", "copy_packages/app3.txt", "copy_packages/app4.txt", "copy_packages/app5.txt", "copy_packages/app6.txt", "copy_packages/app7.txt", "copy_packages/app8.txt", "copy_packages/app9.txt", "copy_packages/app10.txt", "copy_packages/app11.txt", "copy_packages/app12.txt", "copy_packages/app13.txt", "copy_packages/app14.txt", "copy_packages/app15.txt", "copy_packages/app16.txt", "copy_packages/app17.txt", "copy_packages/app18.txt", "copy_packages/app19.txt", "copy_packages/app20.txt", "copy_packages/app21.txt", "copy_packages/app22.txt", "copy_packages/app23.txt", "copy_packages/app24.txt", "copy_packages/app25.txt", "copy_packages/app26.txt", "copy_packages/app27.txt", "copy_packages/app28.txt","copy_packages/app29.txt", "copy_packages/app30.txt", "/"]
+# 方案二: 使用通配符Copy包下的所有内容
+COPY copy_packages/* /
