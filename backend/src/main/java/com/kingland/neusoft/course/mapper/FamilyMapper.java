@@ -1,6 +1,6 @@
 package com.kingland.neusoft.course.mapper;
 
-import com.kingland.neusoft.course.model.FamilyModel;
+import com.kingland.neusoft.course.mapper.dao.FamilyModel;
 
 public interface FamilyMapper {
     int deleteByPrimaryKey(Long id);

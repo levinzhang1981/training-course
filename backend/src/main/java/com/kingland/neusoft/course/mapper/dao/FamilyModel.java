@@ -1,4 +1,4 @@
-package com.kingland.neusoft.course.model;
+package com.kingland.neusoft.course.mapper.dao;
 
 import java.io.Serializable;
 

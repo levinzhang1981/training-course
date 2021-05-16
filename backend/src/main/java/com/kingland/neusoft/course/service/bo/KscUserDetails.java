@@ -1,6 +1,6 @@
-package com.kingland.neusoft.course.model.bo;
+package com.kingland.neusoft.course.service.bo;
 
-import com.kingland.neusoft.course.model.UserModel;
+import com.kingland.neusoft.course.mapper.dao.UserModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

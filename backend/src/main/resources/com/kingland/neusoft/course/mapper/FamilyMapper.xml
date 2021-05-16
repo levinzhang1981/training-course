@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kingland.neusoft.course.mapper.FamilyMapper">
-  <resultMap id="BaseResultMap" type="com.kingland.neusoft.course.model.FamilyModel">
+  <resultMap id="BaseResultMap" type="com.kingland.neusoft.course.mapper.dao.FamilyModel">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -22,13 +22,13 @@
     delete from user_access."family"
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.mapper.dao.FamilyModel" useGeneratedKeys="true">
     insert into user_access."family" (user_id, "name", age,
       relationshiptype, phone_num)
     values (#{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
       #{relationshiptype,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.model.FamilyModel" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.kingland.neusoft.course.mapper.dao.FamilyModel" useGeneratedKeys="true">
     insert into user_access."family"
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -65,7 +65,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kingland.neusoft.course.model.FamilyModel">
+  <update id="updateByPrimaryKeySelective" parameterType="com.kingland.neusoft.course.mapper.dao.FamilyModel">
     update user_access."family"
     <set>
       <if test="userId != null">
@@ -86,7 +86,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kingland.neusoft.course.model.FamilyModel">
+  <update id="updateByPrimaryKey" parameterType="com.kingland.neusoft.course.mapper.dao.FamilyModel">
     update user_access."family"
     set user_id = #{userId,jdbcType=BIGINT},
       "name" = #{name,jdbcType=VARCHAR},

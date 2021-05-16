@@ -1,6 +1,6 @@
 package com.kingland.neusoft.course.service;
 
-import com.kingland.neusoft.course.model.UserModel;
+import com.kingland.neusoft.course.mapper.dao.UserModel;
 
 /**
  * The service provide ability to access the user information
@@ -24,4 +24,11 @@ public interface UserService {
      * @return database record
      */
     UserModel addUser(UserModel userModel);
+
+    /**
+     * Delete user model by id
+     *
+     * @param id the id for deleting
+     */
+    void deleteById(Long id);
 }
