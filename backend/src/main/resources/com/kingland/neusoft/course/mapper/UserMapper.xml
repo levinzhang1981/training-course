@@ -27,6 +27,12 @@
         from user_access."user"
         where username = #{username,jdbcType=VARCHAR}
     </select>
+    <select id="query" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_access."user"
+        where username ilike #{username,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
         from user_access."user"

@@ -1,5 +1,7 @@
 package com.kingland.neusoft.course.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.kingland.neusoft.course.mapper.dao.UserModel;
 import com.kingland.neusoft.course.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,17 @@ public class UserController {
     @GetMapping("/user/{id}")
     public UserModel getById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    /**
+     * Api for querying user information by advance condition
+     *
+     * @param request page info like request for querying user information
+     * @return collection of user info but with page information
+     */
+    @PostMapping("/user/query")
+    public Page<UserModel> query(@RequestBody PageInfo<UserModel> request) {
+        return userService.query(request);
     }
 
     /**

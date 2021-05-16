@@ -1,5 +1,7 @@
 package com.kingland.neusoft.course.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.kingland.neusoft.course.mapper.UserMapper;
 import com.kingland.neusoft.course.mapper.dao.UserModel;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getUserById(Long id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Page<UserModel> query(PageInfo<UserModel> queryRequest) {
+        return userMapper.query(queryRequest);
     }
 
     @Override

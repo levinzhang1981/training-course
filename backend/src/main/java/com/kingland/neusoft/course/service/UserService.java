@@ -1,5 +1,7 @@
 package com.kingland.neusoft.course.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.kingland.neusoft.course.mapper.dao.UserModel;
 
 /**
@@ -16,6 +18,14 @@ public interface UserService {
      * @return user data
      */
     UserModel getUserById(Long id);
+
+    /**
+     * Query user model by provided conditions
+     *
+     * @param queryRequest request body for quering
+     * @return list of user model
+     */
+    Page<UserModel> query(PageInfo<UserModel> queryRequest);
 
     /**
      * Create user by specific user object

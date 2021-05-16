@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
     implementation "org.flywaydb:flyway-core:7.8.2"
+    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0'
 
     implementation 'javax.xml.bind:jaxb-api:2.3.0'
     implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
