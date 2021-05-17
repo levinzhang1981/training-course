@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component';
-import { EditUserComponent } from './users/edit-user.component';
-import { AdminComponent } from './admin.component';
+import {AdminRoutingModule} from './admin-routing.module';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {UsersComponent} from './users/users.component';
+import {EditUserComponent} from './users/edit-user.component';
+import {AdminComponent} from './admin.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { AdminComponent } from './admin.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AdminRoutingModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}
