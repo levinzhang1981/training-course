@@ -4,6 +4,7 @@ import com.kingland.neusoft.course.mapper.UserMapper;
 import com.kingland.neusoft.course.service.DbDrivenUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,8 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .requestMatchers().anyRequest()
                 .and()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/oauth/*").permitAll();
+                .antMatchers("/noauth/*", "/user", "/user/*")
+                .permitAll();
     }
 
     @Bean

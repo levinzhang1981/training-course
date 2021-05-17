@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControlOptions, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MustMatch} from '../../shared/validator/must-match.validator';
+import {UserApiService} from '../../core/api/user-api.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -12,27 +13,29 @@ export class EditUserComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private readonly formBuilder: FormBuilder,
+              private readonly userApiClient: UserApiService) {
   }
 
   ngOnInit() {
+    const formOptions: AbstractControlOptions = {
+      validators: MustMatch('password', 'confirmPassword')
+    };
+
     this.registerForm = this.formBuilder.group(
       {
-        title: ['', Validators.required],
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        age: [
-          '',
-          [Validators.required, Validators.min(0), Validators.max(150)]
-        ],
-        email: ['', [Validators.required, Validators.email]],
+        username: ['', Validators.required],
+        name: ['', Validators.required],
+        gender: ['', Validators.required],
+        birthday: ['', Validators.required],
+        phoneNum: ['', Validators.required],
+        homeAddress: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
+        isAdmin: [false, Validators.required],
         acceptTerms: [false, Validators.requiredTrue]
       },
-      {
-        validator: MustMatch('password', 'confirmPassword')
-      }
+      formOptions
     );
   }
 
@@ -49,10 +52,9 @@ export class EditUserComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    alert(
-      'SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4)
-    );
+    this.userApiClient.create(this.registerForm.value).subscribe(() => {
+      alert('User created success');
+    });
   }
 
   onReset() {

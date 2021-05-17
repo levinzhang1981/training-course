@@ -2,6 +2,7 @@
   <configuration default="false" name="backend-app@local" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="course.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.kingland.neusoft.course.CourseApplication" />
+    <option name="ACTIVE_PROFILES" value="Mybatis" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="NONE" />
     <envs>
