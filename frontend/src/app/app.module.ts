@@ -7,6 +7,7 @@ import {CoreModule} from './core/core.module';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MenubarModule} from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

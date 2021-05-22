@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {User} from './shared/model/user';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,20 @@ import {User} from './shared/model/user';
 })
 export class AppComponent {
   user: User;
+  menuItems: MenuItem[] = [
+    {
+      label: 'Home',
+      routerLink: 'admin',
+    },
+    {
+      label: 'Users',
+      routerLink: 'admin/users'
+    },
+    {
+      label: 'Add User',
+      routerLink: 'admin/user/-1'
+    }
+  ];
 
   constructor() {
   }
