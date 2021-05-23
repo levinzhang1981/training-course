@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
 
     this.userApiClient.login(this.loginForm.value)
       .subscribe(result => {
-        this.msgs = [{severity: 'error', detail: result}];
+        this.msgs = [{severity: 'success', detail: 'Login Success.'}];
+      }, ({error}) => {
+        this.msgs = [{severity: 'error', detail: error.message}];
       });
   }
 }

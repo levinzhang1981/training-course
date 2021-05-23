@@ -1,6 +1,8 @@
 package com.kingland.neusoft.course.config;
 
 import com.kingland.neusoft.course.mapper.UserMapper;
+import com.kingland.neusoft.course.security.ResponsiveAuthenticationFailureHandler;
+import com.kingland.neusoft.course.security.ResponsiveAuthenticationSuccessHandler;
 import com.kingland.neusoft.course.service.DbDrivenUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author KSC
@@ -49,11 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(authorize ->
                         authorize
-                                .antMatchers("/noauth/*", "/login", "/logout", "/user", "/user/*").permitAll()
+                                .antMatchers("/noauth/*", "/login", "/logout").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+                .successHandler(authenticationSuccessHandler())
+                .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout().logoutUrl("/logout");
     }
@@ -62,6 +64,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new ResponsiveAuthenticationSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new ResponsiveAuthenticationFailureHandler();
     }
 
     @Override

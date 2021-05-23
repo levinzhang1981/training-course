@@ -3,6 +3,8 @@ package com.kingland.neusoft.course.service;
 import com.kingland.neusoft.course.mapper.UserMapper;
 import com.kingland.neusoft.course.mapper.dao.UserModel;
 import com.kingland.neusoft.course.service.bo.KscUserDetails;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

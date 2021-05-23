@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Ksc provided user details model for authentication
@@ -16,7 +17,7 @@ public class KscUserDetails implements UserDetails {
     private final UserModel internalUser;
 
     public KscUserDetails(UserModel internalUser) {
-        this.internalUser = internalUser;
+        this.internalUser = Objects.requireNonNullElseGet(internalUser, UserModel::new);
     }
 
     @Override
