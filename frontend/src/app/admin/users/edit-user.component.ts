@@ -22,7 +22,7 @@ export class EditUserComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  genderOpts = ['Male', 'Female', 'Other'];
+  genderOpts = [{label: 'Male', value: 1}, {label: 'Female', value: 2}, {label: 'Other', value: 3}];
 
   ngOnInit() {
     const formOptions: AbstractControlOptions = {
@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
       {
         username: ['', Validators.required],
         name: ['', Validators.required],
-        gender: ['', Validators.required],
+        gender: [1, Validators.required],
         birthday: ['', Validators.required],
         phoneNum: ['', Validators.required],
         homeAddress: ['', Validators.required],
@@ -48,7 +48,6 @@ export class EditUserComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       Object.keys(this.registerForm.controls).forEach(key => {

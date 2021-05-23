@@ -4,18 +4,33 @@ import com.kingland.neusoft.course.mapper.UserMapper;
 import com.kingland.neusoft.course.service.DbDrivenUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
+/**
+ * @author KSC
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserMapper userMapper;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        // given a default strength value
+        return new BCryptPasswordEncoder(4);
+    }
 
     public SecurityConfig(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -31,17 +46,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http
-                .requestMatchers().anyRequest()
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeRequests(authorize ->
+                        authorize
+                                .antMatchers("/noauth/*", "/login", "/logout", "/user", "/user/*").permitAll()
+                                .anyRequest().authenticated())
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
                 .and()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/noauth/*", "/user", "/user/*")
-                .permitAll();
+                .logout().logoutUrl("/logout");
     }
 
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 }

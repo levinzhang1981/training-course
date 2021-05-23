@@ -18,4 +18,12 @@ export class UserApiService {
   create(user: User): Observable<User> {
     return this.httpClient.post<User>('/user', user);
   }
+
+  /**
+   * Login backend with given user form value
+   * @param loginFormValue value of login form
+   */
+  login(loginFormValue: any): Observable<any> {
+    return this.httpClient.post<any>(`/login?username=${loginFormValue.username}&password=${loginFormValue.password}`, {});
+  }
 }

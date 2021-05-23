@@ -30,7 +30,10 @@
         </div>
         <div class="p-field p-col-12 p-md-2">
           <label>Gender</label>
-          <p-dropdown [options]="genderOpts" formControlName="gender"
+          <p-dropdown [options]="genderOpts"
+                      optionLabel="label"
+                      optionValue="value"
+                      formControlName="gender"
           ></p-dropdown>
           <small *ngIf="f.gender.dirty && f.gender.errors" class="p-error">
             <div *ngIf="f.gender.errors.required">Gender is required</div>
@@ -110,12 +113,14 @@
         <div class="p-field-checkbox p-col-12">
           <p-checkbox
             formControlName="isAdmin"
+            binary="true"
             id="isAdmin"></p-checkbox>
           <label for="isAdmin" class="form-check-label">Admin User</label>
         </div>
         <div class="p-field-checkbox p-col-12">
           <p-checkbox
             formControlName="acceptTerms"
+            binary="true"
             id="acceptTerms"
             [ngClass]="{ 'is-invalid': f.acceptTerms.dirty && f.acceptTerms.errors }"
           ></p-checkbox>

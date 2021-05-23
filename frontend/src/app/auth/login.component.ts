@@ -24,6 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.msgs = [{severity: 'error', detail: 'Login Failed.'}];
+    if (this.loginForm.invalid) {
+      this.msgs = [{severity: 'error', detail: 'Login form invalid.'}];
+    }
+
+    this.userApiClient.login(this.loginForm.value)
+      .subscribe(result => {
+        this.msgs = [{severity: 'error', detail: result}];
+      });
   }
 }
