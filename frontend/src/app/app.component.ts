@@ -21,6 +21,10 @@ export class AppComponent {
     {
       label: 'Add User',
       routerLink: 'admin/user/-1'
+    },
+    {
+      label: 'Login',
+      routerLink: 'auth/login'
     }
   ];
 
